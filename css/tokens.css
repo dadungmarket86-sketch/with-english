@@ -1,0 +1,145 @@
+/* =========================================================
+   디자인 토큰 — 색·글꼴·모서리·그림자·움직임 값 모음
+   이 파일의 숫자만 바꿔도 앱 전체 분위기가 함께 바뀝니다.
+   ========================================================= */
+
+/* ---------- 공통 (테마와 상관없는 값) ---------- */
+:root {
+  /* 글꼴: 영어 표현은 세리프, 본문은 Inter, 한글은 Pretendard가 자동으로 이어받음 */
+  --font-serif: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-sans: "Inter", "Pretendard", system-ui, -apple-system, sans-serif;
+  --font-ko: "Pretendard", "Inter", system-ui, -apple-system, sans-serif;
+
+  /* 둥근 모서리 */
+  --r-sm: 12px;
+  --r-md: 16px;
+  --r-lg: 20px;
+  --r-xl: 24px;
+  --r-full: 999px;
+
+  /* 움직임: 부드럽게 감속하는 곡선 + 240ms 기본 */
+  --ease: cubic-bezier(.22, .72, .2, 1);
+  --dur: 240ms;
+
+  /* 앱 폭 (데스크톱에서 가운데 정렬되는 폭) */
+  --app-width: 440px;
+  --tabbar-h: 72px;
+}
+
+/* ---------- 라이트 테마 (기본) ---------- */
+:root {
+  --page: #EFEAE1;          /* 데스크톱에서 앱 바깥 배경 */
+  --bg: #FAF7F2;            /* 앱 배경: 은은한 크림 */
+  --surface: #FFFFFF;       /* 카드 표면 */
+  --surface-2: #F3EFE8;     /* 보조 표면 (세그먼트, 스켈레톤) */
+  --line: #ECE6DC;          /* 얇은 구분선 */
+
+  --text: #23211E;          /* 제목·영어 표현 */
+  --text-2: #4A463F;        /* 해석 */
+  --muted: #7D776E;         /* 보조 설명 */
+  --faint: #ABA59B;         /* 가장 약한 글자 */
+
+  /* 포인트 컬러: 딥 그린과 그 변주 */
+  --accent: #2F5D50;
+  --accent-press: #264D42;
+  --accent-soft: #E4EDE8;   /* 칩·아이콘 타일·보조 버튼 배경 */
+  --accent-softer: #EFF4F1; /* 아주 연한 배경 */
+  --on-accent: #FFFFFF;
+
+  /* 홈 상단의 진한 카드 */
+  --hero: #2F5D50;
+  --on-hero: #F4F1EA;
+  --on-hero-muted: rgba(244, 241, 234, .68);
+  --hero-track: rgba(244, 241, 234, .18);
+
+  /* 정답·오답: 채도를 낮춘 톤 */
+  --ok: #4F7A5C;
+  --ok-bg: #E6EEE6;
+  --no: #A35D57;
+  --no-bg: #F4E5E2;
+
+  /* 그림자: 아주 부드럽게, 살짝 떠 있는 느낌 */
+  --shadow-sm: 0 1px 2px rgba(45, 35, 25, .04), 0 4px 12px -4px rgba(45, 35, 25, .07);
+  --shadow-md: 0 1px 2px rgba(45, 35, 25, .04), 0 14px 34px -14px rgba(45, 35, 25, .18);
+  --shadow-lg: 0 2px 4px rgba(45, 35, 25, .04), 0 30px 70px -24px rgba(45, 35, 25, .26);
+
+  --tabbar-bg: rgba(250, 247, 242, .86);
+  color-scheme: light;
+}
+
+/* ---------- 다크 테마 ----------
+   단순 반전이 아니라 깊은 차콜 위에 부드러운 대비로 따로 설계했습니다.
+   (1) 사용자가 다크를 직접 고른 경우  (2) '시스템'이고 기기가 다크인 경우 */
+:root[data-theme="dark"] {
+  --page: #121110;
+  --bg: #1C1B19;
+  --surface: #262522;
+  --surface-2: #2E2C29;
+  --line: #36332F;
+
+  --text: #EDE9E2;
+  --text-2: #CFC9BF;
+  --muted: #A39E95;
+  --faint: #6F6A62;
+
+  --accent: #8DBBA9;
+  --accent-press: #7AAA97;
+  --accent-soft: #2A3631;
+  --accent-softer: #232B27;
+  --on-accent: #14201B;
+
+  --hero: #26372F;
+  --on-hero: #EDE9E2;
+  --on-hero-muted: rgba(237, 233, 226, .62);
+  --hero-track: rgba(237, 233, 226, .14);
+
+  --ok: #8DB596;
+  --ok-bg: #26332A;
+  --no: #D39892;
+  --no-bg: #3A2A28;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, .3);
+  --shadow-md: 0 1px 2px rgba(0, 0, 0, .3), 0 14px 34px -14px rgba(0, 0, 0, .55);
+  --shadow-lg: 0 2px 4px rgba(0, 0, 0, .3), 0 30px 70px -24px rgba(0, 0, 0, .7);
+
+  --tabbar-bg: rgba(28, 27, 25, .86);
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --page: #121110;
+    --bg: #1C1B19;
+    --surface: #262522;
+    --surface-2: #2E2C29;
+    --line: #36332F;
+
+    --text: #EDE9E2;
+    --text-2: #CFC9BF;
+    --muted: #A39E95;
+    --faint: #6F6A62;
+
+    --accent: #8DBBA9;
+    --accent-press: #7AAA97;
+    --accent-soft: #2A3631;
+    --accent-softer: #232B27;
+    --on-accent: #14201B;
+
+    --hero: #26372F;
+    --on-hero: #EDE9E2;
+    --on-hero-muted: rgba(237, 233, 226, .62);
+    --hero-track: rgba(237, 233, 226, .14);
+
+    --ok: #8DB596;
+    --ok-bg: #26332A;
+    --no: #D39892;
+    --no-bg: #3A2A28;
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, .3);
+    --shadow-md: 0 1px 2px rgba(0, 0, 0, .3), 0 14px 34px -14px rgba(0, 0, 0, .55);
+    --shadow-lg: 0 2px 4px rgba(0, 0, 0, .3), 0 30px 70px -24px rgba(0, 0, 0, .7);
+
+    --tabbar-bg: rgba(28, 27, 25, .86);
+    color-scheme: dark;
+  }
+}

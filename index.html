@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>with English</title>
+  <link rel="icon" type="image/png" href="icons/icon-192.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="with English">
+  <meta name="description" content="하루 10분, 말로 바로 나오는 생활 영어">
+  <meta name="theme-color" content="#FAF7F2" data-scheme="light" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1B19" data-scheme="dark" media="(prefers-color-scheme: dark)">
+
+  <!-- 저장된 테마를 화면이 그려지기 전에 먼저 적용 (깜빡임 방지) -->
+  <script>
+    try {
+      var t = JSON.parse(localStorage.getItem('we:settings') || '{}').theme;
+      if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  </script>
+
+  <!-- 글꼴: Fraunces(영어 세리프) · Inter(본문) · Pretendard(한글) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@400..700&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css">
+
+  <!-- 스타일: 토큰 → 기본 → 부품 → 화면 순서 -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/screens.css">
+</head>
+<body>
+  <div class="app">
+    <main id="view" class="view"></main>
+    <nav id="tabbar" class="tabbar" aria-label="주요 메뉴"></nav>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <!-- 1) 학습 데이터 — 내용을 고치려면 data 폴더만 보면 됩니다 -->
+  <script src="data/categories.js"></script>
+  <script src="data/words.js"></script>
+  <script src="data/dialogs.js"></script>
+
+  <!-- 2) 공용 기능 -->
+  <script src="js/icons.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/speech.js"></script>
+
+  <!-- 3) 화면 (탭마다 한 파일) -->
+  <script src="js/home.js"></script>
+  <script src="js/cards.js"></script>
+  <script src="js/talk.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/stats.js"></script>
+
+  <!-- 4) 시작 -->
+  <script src="js/app.js"></script>
+</body>
+</html>

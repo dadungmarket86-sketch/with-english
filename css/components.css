@@ -1,0 +1,343 @@
+/* =========================================================
+   공용 부품 — 버튼, 카드, 칩, 목록 줄, 진행 바·링, 세그먼트,
+   하단 탭, 토스트, 스켈레톤(로딩), 빈 화면, 완료 화면
+   ========================================================= */
+
+/* ---------- 누를 때 살짝 들어가는 반응 ---------- */
+.pressable {
+  transition:
+    transform 160ms var(--ease),
+    background-color var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease);
+}
+.pressable:active { transform: scale(.98); }
+
+/* ---------- 버튼 ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 52px;
+  padding: 0 22px;
+  border-radius: var(--r-md);
+  font-family: var(--font-ko);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -.01em;
+  transition: transform 160ms var(--ease), background-color var(--dur) var(--ease), opacity var(--dur);
+}
+.btn:active { transform: scale(.97); }
+.btn-block { width: 100%; }
+
+.btn-primary { background: var(--accent); color: var(--on-accent); }
+.btn-primary:active { background: var(--accent-press); }
+.btn-soft { background: var(--accent-soft); color: var(--accent); }
+.btn-ghost { background: var(--surface-2); color: var(--text-2); }
+.btn-on-hero { background: var(--on-hero); color: var(--hero); }
+
+/* 동그란 아이콘 버튼 (발음 듣기 등) */
+.icon-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--accent-soft);
+  color: var(--accent);
+  transition: transform 160ms var(--ease), background-color var(--dur);
+}
+.icon-btn:active { transform: scale(.9); }
+/* 소리가 나는 동안 은은하게 퍼지는 표시 */
+.icon-btn.is-speaking { animation: speaking 1.2s var(--ease) infinite; }
+@keyframes speaking {
+  0%   { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 28%, transparent); }
+  100% { box-shadow: 0 0 0 12px transparent; }
+}
+
+/* ---------- 카드 ---------- */
+.card {
+  position: relative;
+  background: var(--surface);
+  border-radius: var(--r-xl);
+  box-shadow: var(--shadow-md);
+  padding: 24px 22px;
+  transition: background-color var(--dur) var(--ease);
+}
+
+/* 작은 라벨 칩 */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 28px;
+  padding: 0 11px;
+  border-radius: var(--r-full);
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-family: var(--font-ko);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* ---------- 섹션 제목 ---------- */
+.section { margin-top: 36px; }
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+.section-title {
+  font-family: var(--font-ko);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -.02em;
+}
+.section-note { font-family: var(--font-ko); font-size: 12.5px; color: var(--muted); }
+
+/* 화면 맨 위 제목 묶음 */
+.screen-head { margin: 12px 0 28px; }
+.screen-head .t-h1 { margin-top: 6px; }
+.screen-head .t-sub { margin-top: 6px; }
+
+/* ---------- 목록 한 줄 (카테고리, 메뉴 등) ---------- */
+.row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 16px;
+  background: var(--surface);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-sm);
+}
+.row + .row { margin-top: 10px; }
+.row-main { flex: 1; min-width: 0; }
+.row-title {
+  font-family: var(--font-ko);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -.01em;
+}
+.row-title .serif-i { color: var(--muted); font-size: 14px; margin-left: 6px; }
+.row-sub { font-family: var(--font-ko); font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+.row-end { color: var(--faint); display: flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 500; }
+.row .progress { margin-top: 10px; }
+
+/* 아이콘을 담는 둥근 사각 타일 */
+.icon-tile {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+/* ---------- 진행 바 (얇고 우아하게) ---------- */
+.progress {
+  height: 3px;
+  border-radius: 3px;
+  background: var(--line);
+  overflow: hidden;
+}
+.progress > i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--accent);
+  transition: width 700ms var(--ease);
+}
+
+/* ---------- 진행 링 ---------- */
+.ring { position: relative; display: inline-grid; place-items: center; flex: none; }
+.ring > svg { transform: rotate(-90deg); }
+.ring .track { stroke: var(--line); }
+.ring .bar { stroke: var(--accent); stroke-linecap: round; transition: stroke-dashoffset 900ms var(--ease); }
+.ring-label { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; line-height: 1.1; }
+
+/* ---------- 세그먼트 선택 (테마, 발음 속도) ---------- */
+.segmented {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 14px;
+  background: var(--surface-2);
+}
+.segmented button {
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-family: var(--font-ko);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--muted);
+  transition: background-color var(--dur) var(--ease), color var(--dur), box-shadow var(--dur);
+}
+.segmented button[aria-pressed="true"] {
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ---------- 하단 탭 ---------- */
+.tabbar {
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  z-index: 20;
+  width: 100%;
+  max-width: var(--app-width);
+  transform: translateX(-50%);
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  padding: 8px 8px calc(8px + env(safe-area-inset-bottom));
+  background: var(--tabbar-bg);
+  backdrop-filter: saturate(1.4) blur(18px);
+  -webkit-backdrop-filter: saturate(1.4) blur(18px);
+  border-top: 1px solid var(--line);
+}
+.tab {
+  min-height: 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  font-family: var(--font-ko);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted);
+  transition: color var(--dur) var(--ease);
+}
+.tab-icon {
+  width: 54px;
+  height: 30px;
+  border-radius: var(--r-full);
+  display: grid;
+  place-items: center;
+  transition: background-color var(--dur) var(--ease), transform 160ms var(--ease);
+}
+.tab:active .tab-icon { transform: scale(.9); }
+.tab[aria-current="page"] { color: var(--accent); font-weight: 600; }
+.tab[aria-current="page"] .tab-icon { background: var(--accent-soft); }
+
+/* ---------- 토스트 알림 ---------- */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(var(--tabbar-h) + env(safe-area-inset-bottom) + 20px);
+  z-index: 60;
+  transform: translate(-50%, 8px);
+  opacity: 0;
+  pointer-events: none;
+  padding: 12px 18px;
+  border-radius: var(--r-full);
+  background: var(--text);
+  color: var(--bg);
+  font-family: var(--font-ko);
+  font-size: 13.5px;
+  font-weight: 500;
+  white-space: nowrap;
+  box-shadow: var(--shadow-md);
+  transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+/* ---------- 로딩: 스켈레톤 ---------- */
+.skeleton {
+  border-radius: var(--r-md);
+  background: linear-gradient(90deg, var(--surface-2) 0%, var(--line) 50%, var(--surface-2) 100%);
+  background-size: 220% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+.skeleton + .skeleton { margin-top: 12px; }
+@keyframes shimmer {
+  from { background-position: 120% 0; }
+  to   { background-position: -120% 0; }
+}
+
+/* ---------- 빈 화면 ---------- */
+.empty { text-align: center; padding: 36px 24px; }
+.empty-icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--accent-softer);
+  color: var(--accent);
+}
+.empty-title { font-family: var(--font-ko); font-size: 15px; font-weight: 600; }
+.empty-body { font-family: var(--font-ko); font-size: 13.5px; color: var(--muted); margin-top: 4px; }
+.empty .btn { margin-top: 20px; height: 44px; }
+
+/* ---------- 학습 완료 화면 ----------
+   링이 천천히 차오르고 → 체크가 나타나고 → 문구가 조용히 떠오릅니다 */
+.complete {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 32px 24px calc(32px + env(safe-area-inset-bottom));
+  background: var(--bg);
+  opacity: 0;
+  transition: opacity 300ms var(--ease);
+}
+.complete.show { opacity: 1; }
+.complete-inner {
+  width: 100%;
+  max-width: 360px;
+  text-align: center;
+  transform: translateY(10px);
+  transition: transform 500ms var(--ease);
+}
+.complete.show .complete-inner { transform: none; }
+.complete .ring { margin: 0 auto; }
+.complete .ring .bar { transition: stroke-dashoffset 1200ms var(--ease) 150ms; }
+.complete-check {
+  color: var(--accent);
+  opacity: 0;
+  transform: scale(.6);
+  transition: opacity 400ms var(--ease) 1150ms, transform 400ms var(--ease) 1150ms;
+}
+.complete.show .complete-check { opacity: 1; transform: none; }
+.complete .eyebrow { margin-top: 32px; }
+.complete-title {
+  margin-top: 10px;
+  font-family: var(--font-serif);
+  font-size: 46px;
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -.025em;
+}
+.complete-title em { font-style: italic; color: var(--accent); }
+.complete-sub {
+  margin-top: 14px;
+  font-family: var(--font-ko);
+  font-size: 15px;
+  color: var(--text-2);
+  white-space: pre-line;
+}
+.complete-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 36px 0 32px;
+  padding: 20px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.complete-stats > div + div { border-left: 1px solid var(--line); }
+.cs-value { font-family: var(--font-serif); font-size: 28px; font-weight: 450; line-height: 1.1; }
+.cs-label { font-family: var(--font-ko); font-size: 12px; color: var(--muted); margin-top: 4px; }
+.complete .btn + .btn { margin-top: 10px; }
